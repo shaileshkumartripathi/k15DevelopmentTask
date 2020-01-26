@@ -100,9 +100,10 @@ Good luck!
  
  URL: http://localhost:8080/h2-console
  
- Runt he query to see the data in the table.SELECT * FROM REGISTRATION;
+ Run the query to see the data in the table.SELECT * FROM REGISTRATION;
  
 ## Code Analyse via Inspect Code Tool and SonarLint
 
  SonarLint not shows any error in registrationResource.java
+ 
  Code Inspect showing minimal warning.
