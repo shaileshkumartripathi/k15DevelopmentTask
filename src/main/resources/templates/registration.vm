@@ -30,12 +30,12 @@ The form should support to enter the following information:<br>*#
     #if ($status == "success")
     <p>${message}</p>
     <p>${Name}</p>
-    <p>${Adddress}</p>
+    <p>${Address}</p>
     <p>${PhoneNo}</p>
     <p>${Email}</p>
     #end
     #if ($status == "failure")
-    <p>${message}</p>
+    <p>${message} ${Email}</p>
     #end
     #parse ("common/footer.vm")
 </body>

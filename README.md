@@ -62,7 +62,7 @@ Tip: Use git as you would in a product environment - small, meaningful commits w
 
 Good luck!
 
-# Development Environment Setup.
+# Project Configuration
 
 
 ## Dev-Environment
@@ -101,3 +101,8 @@ Good luck!
  URL: http://localhost:8080/h2-console
  
  Runt he query to see the data in the table.SELECT * FROM REGISTRATION;
+ 
+## Code Analyse via Inspect Code Tool and SonarLint
+
+ SonarLint not shows any error in registrationResource.java
+ Code Inspect showing minimal warning.

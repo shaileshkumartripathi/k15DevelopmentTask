@@ -1,6 +1,8 @@
-package com.k15t.pat.registration;
+package com.k15t.pat.registration.test;
 
 
+import com.k15t.pat.registration.RegistrationForm;
+import com.k15t.pat.registration.RegistrationResource;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

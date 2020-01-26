@@ -4,21 +4,13 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import javax.validation.Valid;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 
-@Path("/registration")
-@Component
 @Service
 public class RegistrationResource {
 
@@ -27,7 +19,7 @@ public class RegistrationResource {
 
     @Autowired private VelocityEngine velocityEngine;
 
-    boolean successFailure;
+    private boolean successFailure=true;
 
     public String save(@Valid @ModelAttribute RegistrationForm registrationForm)
     {
@@ -40,37 +32,41 @@ public class RegistrationResource {
         return writer.toString();
     }
 
-    public void getVerifyDataSavedOrNot(@ModelAttribute @Valid RegistrationForm registrationForm, VelocityContext context) {
+    private void getVerifyDataSavedOrNot(@ModelAttribute @Valid RegistrationForm registrationForm, VelocityContext context) {
         if (successFailure) {
             saveData(registrationForm);
             context.put("status", "success");
             context.put("message", "Successfully Saved!");
             context.put("Name", registrationForm.getName());
-            context.put("Adddress", registrationForm.getAddress());
+            context.put("Address", registrationForm.getAddress());
             context.put("PhoneNo", registrationForm.getPhoneNumber());
             context.put("Email", registrationForm.getEmail());
         } else {
             context.put("status", "failure");
-            context.put("message", "Data Not Saved!Email Address already present in the Database");
+            context.put("Email", registrationForm.getEmail());
+            context.put("message", "Data Not Saved!Email Address already present in the Database = ");
         }
     }
 
     public boolean hasDataSaved(RegistrationForm registrationForm) {
-        if(getAllData().size() == 0)
-            return successFailure = true;
+        if(getAllData().size() == 0) {
+            successFailure = true;
+            return successFailure;
+        }
         for(RegistrationForm item: getAllData()) {
             // Can't persisted the  duplicate email.
             if(item.getEmail().equalsIgnoreCase(registrationForm.getEmail())){
-                return successFailure = false;
+                successFailure = false;
+                return successFailure;
             }
         }
-        return successFailure = true;
+        return successFailure;
     }
     public List<RegistrationForm> getAllData() {
         return registrationFormRepository.findAll();
     }
 
-    public void saveData(RegistrationForm registrationForm){
+    private void saveData(RegistrationForm registrationForm){
         registrationFormRepository.save(registrationForm);
     }
 
