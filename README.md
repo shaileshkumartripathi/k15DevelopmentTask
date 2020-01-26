@@ -61,3 +61,27 @@ In this way you have now a clean repository and can start to commit to it and we
 Tip: Use git as you would in a product environment - small, meaningful commits with descriptive commit messages. This makes it easy for the reviewer to follow your steps and comprehend what you are doing.
 
 Good luck!
+
+## Dev-Environment
+Host OS: Windows 10
+Virtual Box: Oracle VM
+Linux Version: Ubuntu 19.04
+IDE: Intellij 2019.2.2
+In Memory DB: H2
+Development Kit: JDK 1.8
+Application server:Embedded Tomcat provide By Spring Boot.
+
+##Enabled h2 In Memory Database. 
+h2 DB driver needs to download.please refer to Pom.xml file for the reference.
+application.properties has configured for h2 DB.
+
+##Additional Dependecies added into Spring 
+com.h2database: H2 database dependency(Saving data into jvm memory during the time of development.)
+spring-boot-starter-test: It brings Junit 4, AssertJ, Hamcrest, Mockito, JSONassert(Testing Framework)
+spring-boot-starter-data-jpa: Spring boot repository dependency.
+
+##Some class added/updated
+RegistrationForm.java : Created entity for h2 repository to add the registration form data.
+RegistrationFormController.java : Created main registration controller as single responsibilities model to handle the request of registration data from the UI.
+RegistrationFormRepository.java : Created repository interface to for any operation into h2 DB.
+RegistrationResource.java : Extended this class registration core business logic here.This class working as servece class to handle the registration form data from RegistrationFormController.

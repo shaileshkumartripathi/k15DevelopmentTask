@@ -1,27 +1,42 @@
 <html>
-    <head>
-        <title>PAT Registration</title>
-        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="public/css/app.css">
-    </head>
-    <body>
-        #parse ("common/header.vm")
-        <div class="bannerText">
-            <h1>
-                <span>Java Meetup Registration</span>
-            </h1>
-        </div>
-        <form>
-            Extend the form and bind the "Submit" button to store the entered information using the REST resource RegistrationResource.
-            The form should support to enter the following information:<br>
-            - Name (required)<br>
-            - Password (required)<br>
-            - Address (required)<br>
-            - Email (required)<br>
-            - Phone number
-            <p><input class="btn btn-default" type="submit" value="Submit"></p>
-        </form>
-        #parse ("common/footer.vm")
-    </body>
+<head>
+    <title>PAT Registration</title>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="public/css/app.css">
+</head>
+<body>
+    #parse ("common/header.vm")
+<div class="bannerText">
+    <h1>
+        <span>Java Meetup Registration</span>
+    </h1>
+</div>
+<form method="post" action="/registration">
+#*Extend the form and bind the "Submit" button to store the entered information using the REST resource RegistrationResource.
+The form should support to enter the following information:<br>*#
+    Username:<br>
+    <input type="text" id="name" name="name" placeholder="Enter Name" pattern="^[a-zA-Z ]*$" title="only txt elements allowed." required><br><br>
+    Password:<br>
+    <input type="password" id="password" name="password" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  required><br><br>
+    Address:<br>
+    <input type="text" id="address" name="address" placeholder="Enter Address" required><br><br>
+    Email: <br>
+    <input type="txt" id="email" name="email" placeholder="Enter Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email format should be in abc@abc.com!" required><br><br>
+    Phone number: <br>
+    <input type="number"  id="phoneNumber" placeholder="Enter Phone number" name="phoneNumber" ><br><br>
+    <p><input class="btn btn-default" type="submit" value="Submit"></p>
+</form>
+    #if ($status == "success")
+    <p>${message}</p>
+    <p>${Name}</p>
+    <p>${Adddress}</p>
+    <p>${PhoneNo}</p>
+    <p>${Email}</p>
+    #end
+    #if ($status == "failure")
+    <p>${message}</p>
+    #end
+    #parse ("common/footer.vm")
+</body>
 </html>
