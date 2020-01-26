@@ -76,20 +76,28 @@ Good luck!
 
 ## Enabled h2 In Memory Database. 
  h2 DB driver needs to download.please refer to Pom.xml file for the reference.
+ 
  application.properties has configured for h2 DB.
 
 ## Additional Dependecies added into Spring 
  com.h2database: H2 database dependency(Saving data into jvm memory during the time of development.)
+ 
  spring-boot-starter-test: It brings Junit 4, AssertJ, Hamcrest, Mockito, JSONassert(Testing Framework)
+ 
  spring-boot-starter-data-jpa: Spring boot repository dependency.
 
 ## Some class added/updated
  RegistrationForm.java : Created entity for h2 repository to add the registration form data.
+ 
  RegistrationFormController.java : Created main registration controller as single responsibilities model to handle the request of registration data from the UI.
+ 
  RegistrationFormRepository.java : Created repository interface to for any operation into h2 DB.
+ 
  RegistrationResource.java : Extended this class registration core business logic here.This class working as servece class to handle the registration form data from RegistrationFormController.
  
 ## verify data into H2 DB 
  Enter the following changes in the JDBC URL: -> jdbc:h2:mem:test Hit the connection button to connect to h2 DB console.
+ 
  URL: http://localhost:8080/h2-console
+ 
  Runt he query to see the data in the table.SELECT * FROM REGISTRATION;
