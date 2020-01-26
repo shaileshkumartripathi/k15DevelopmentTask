@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -21,17 +22,12 @@ import java.util.List;
 @Service
 public class RegistrationResource {
 
-    // Extend the current resource to receive and store the data in memory.
-    // Return a success information to the user including the entered information.
-    // In case of the address split the information into a better format/structure
-    // for better handling later on.
-
     @Autowired
     private RegistrationFormRepository registrationFormRepository;
 
     @Autowired private VelocityEngine velocityEngine;
 
-    private boolean successFailure;
+    boolean successFailure;
 
     public String save(@Valid @ModelAttribute RegistrationForm registrationForm)
     {
@@ -44,7 +40,7 @@ public class RegistrationResource {
         return writer.toString();
     }
 
-    private void getVerifyDataSavedOrNot(@ModelAttribute @Valid RegistrationForm registrationForm, VelocityContext context) {
+    public void getVerifyDataSavedOrNot(@ModelAttribute @Valid RegistrationForm registrationForm, VelocityContext context) {
         if (successFailure) {
             saveData(registrationForm);
             context.put("status", "success");
